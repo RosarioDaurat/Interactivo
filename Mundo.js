@@ -4,7 +4,7 @@ import { RoomEnvironment } from 'https://unpkg.com/three@0.121.1/examples/jsm/en
 import { Movimiento } from './Movimiento.js';
 export class Mundo{
     constructor(){
-        this.camara = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,1,1000);
+        this.camara = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,2000);
         this.camara.position.z = 5;
 
         this.renderizador = new THREE.WebGLRenderer();
@@ -32,15 +32,15 @@ export class Mundo{
     }
     crearOrbitControl(){
         this.controls = new OrbitControls( this.camara, this.renderizador.domElement );
-		this.controls.minDistance = 1;
+		this.controls.minDistance = 0.1;
 		this.controls.maxDistance = 1000;
     }
     iluminar(){
         //this.escena.add( new THREE.AmbientLight( 0xffffff ) );
-        var luzd = new THREE.DirectionalLight( 0xffddcc, 1 );
+        var luzd = new THREE.DirectionalLight( 0xffddcc, 0.1 );
         luzd.position.set( 1, 0.75, 0.5 );
         this.escena.add( luzd );
-        var lud2 = new THREE.DirectionalLight( 0xccccff, 1 );
+        var lud2 = new THREE.DirectionalLight( 0xccccff, 0.1 );
         lud2.position.set( - 1, 0.75, - 0.5 );
         this.escena.add( lud2 );
         this.renderizador.back
